@@ -4,7 +4,6 @@ void start() {
 	int shapeChoice = 0, choice = 0;
 	double a = 0, b = 0;
 	Function* shape = nullptr;
-
 	std::cout << "Выберите фигуру: \n" <<
 		"1. Эллипс\n" <<
 		"2. Гипербола\n" << std::endl;
@@ -27,8 +26,9 @@ void start() {
 		std::cout << "Меню: \n" <<
 			"1. Вычислить Y\n" <<
 			"2. Распечатать значение\n" <<
-			"3. Вернуться в меню\n" <<
-			"4. Выход\n" << std::endl;
+			"3. Перейти к индивидуальным методам\n" <<
+			"4. Вернуться в меню\n" <<
+			"5. Выход\n" << std::endl;
 		std::cout << "Ввод: ";
 		std::cin >> choice;
 		switch (choice)
@@ -38,6 +38,7 @@ void start() {
 			double x = 0;
 			std::cout << "Введите значение X: ";
 			std::cin >> x;
+			shape->SetX(x);
 			shape->calculateY(x);
 			break;
 		}
@@ -49,13 +50,34 @@ void start() {
 		}
 		case 3: {
 			system("cls");
+			if (shapeChoice == 1) {			//эллипс
+				do {
+					std::cout << "1. Вычисление эксцентриситета\n" <<
+						"Вычисление параметра эллипсa\n" <<
+						"Проверка принадлежности точки эллипсу\n" <<
+						"Вычисление площади эллипса\n" <<
+						"Вычисление длины периметра\n" << std::endl;
+				}
+			}
+			else {
+
+			}
+			
+		}
+		case 4: {
+			system("cls");
 			start();
-			choice = 4;
+			choice = 5;
 			break;
 		}
 		default:
 			break;
 		}
-	} while (choice != 4);
+	} while (choice != 5);
 	delete shape;
+}
+
+std::ostream& operator<<(std::ostream& out, Function& func) {
+	out << *func.a << *func.b;
+	return out;
 }

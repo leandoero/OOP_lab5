@@ -1,13 +1,13 @@
 #pragma once
 
-//добавить перегрузку <<
+//добавить перегрузку << 
 
 #include <iostream>
 #include <string>
 
 class Function {
 protected:
-	double* a, * b;
+	double* a, * b, * x;
 public:
 	Function(double, double);
 	Function(const Function&);
@@ -17,8 +17,12 @@ public:
 
 	double* getA();
 	double* getB();
+	double* getX();
+	void SetX(double);
 	void SetA(double);
 	void SetB(double);
+
+	friend std::ostream& operator<<(std::ostream&, Function&);
 
 	~Function();
 };
