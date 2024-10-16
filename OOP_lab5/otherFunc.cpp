@@ -1,7 +1,7 @@
 #include "otherFunc.h"
 
 void start() {
-	int shapeChoice = 0, choice = 0;
+	int shapeChoice = 0, choice = 0, choiceForCase = 0;
 	double a = 0, b = 0;
 	Function* shape = nullptr;
 	std::cout << "Выберите фигуру: \n" <<
@@ -51,16 +51,96 @@ void start() {
 		case 3: {
 			system("cls");
 			if (shapeChoice == 1) {			//эллипс
+				Ellipse* ellipse = dynamic_cast<Ellipse*>(shape);
 				do {
+					system("cls");
 					std::cout << "1. Вычисление эксцентриситета\n" <<
-						"Вычисление параметра эллипсa\n" <<
-						"Проверка принадлежности точки эллипсу\n" <<
-						"Вычисление площади эллипса\n" <<
-						"Вычисление длины периметра\n" << std::endl;
-				}
+						"2. Вычисление параметра эллипсa\n" <<
+						"3. Проверка принадлежности точки эллипсу\n" <<
+						"4. Вычисление площади эллипса\n" <<
+						"5. Вычисление длины периметра\n" << 
+						"6. Вернуться в меню\n" << std::endl;
+					std::cout << "Ввод: ";
+					std::cin >> choiceForCase;
+					switch (choiceForCase)
+					{
+					case 1: {
+						std::cout << "Эксцентриситет = " << ellipse->getEccentricity() << std::endl;
+						system("pause");
+						break;
+					}
+					case 2: {
+						std::cout << "Параметр = " << ellipse->getParameter() << std::endl;
+						system("pause");
+						break;
+					}
+					case 3: {
+						double x = 0, y = 0;
+						std::cout << "Введите значение точки : (x | y) ";
+						std::cout << std::boolalpha;
+						std::cout << ellipse->isPointOnEllipse(x, y) << std::endl;
+						system("pause");
+						break;
+					}
+					case 4: {
+						std::cout << "Площадь = " << ellipse->getArea() << std::endl;
+						system("pause");
+						break;
+					}
+					case 5: {
+						std::cout << "Длина периметра = " << ellipse->getPerimeter() << std::endl;
+						system("pause");
+						break;
+					}
+					default:
+						break;
+					}
+				} while (choiceForCase != 6);
 			}
 			else {
+				Hyperbola* hyperbola = dynamic_cast<Hyperbola*>(shape);
+				do {
+					system("cls");
+					std::cout << "1. Найти ассимптоты\n" <<
+						"2. Проверка принадлежности точки гиперболе\n" <<
+						"3. Получение эксентриситета\n" <<
+						"4. Нахождение директрисы\n" <<
+						"5. Вернуться в меню\n" << std::endl;
+					std::cin >> choiceForCase;
+					switch (choiceForCase)
+					{
+					case 1: {
+						std::cout << "Ассимптоты: " << hyperbola->getAsymptotes().first << " | " << hyperbola->getAsymptotes().second << std::endl;
+						system("pause");
+						break;
+					}
+					case 2: {
+						double x = 0, y = 0;
+						std::cout << "Введите значение точки : (x | y) ";
+						std::cout << std::boolalpha;
+						std::cout << hyperbola->isPointOnHyperbola(x, y) << std::endl;
+						system("pause");
+						break;
+					}
+					case 3: {
 
+						system("pause");
+						break;
+					}
+					case 4: {
+						
+						system("pause");
+						break;
+					}
+					case 5: {
+						
+						system("pause");
+						break;
+					}
+					default:
+						break;
+					}
+				} while (choiceForCase != 6);
 			}
 			
 		}
