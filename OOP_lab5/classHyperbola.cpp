@@ -6,7 +6,7 @@ double Hyperbola::calculateY(double X) {
 	return resultForHyperbola;
 }
 std::string Hyperbola::toString() {
-	return "Hyperbola : y = " + std::to_string(resultForHyperbola);
+	return "Hyperbola : x = " + std::to_string(*x) + " y = " + std::to_string(resultForHyperbola);
 }
 std::pair<double, double> Hyperbola::getAsymptotes() {
 	double y_First = (*b / *a) * *x;

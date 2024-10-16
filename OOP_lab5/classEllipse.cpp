@@ -20,7 +20,7 @@ double Ellipse::getPerimeter() {
 	return M_PI * (3 * (*a + *b) - sqrt((3 * *a + *b) * (*a + 3 * *b)));
 }
 bool Ellipse::isPointOnEllipse(double x, double y) {
-	return (x * x) / (*a * *a) + (y * y) / (*b * *b) == 1;
+	return (x * x) / (*a * *a) + (y * y) / (*b * *b) <= 1;
 }
 double Ellipse::getParameter() {
 	return (*b * *b) / *a;
