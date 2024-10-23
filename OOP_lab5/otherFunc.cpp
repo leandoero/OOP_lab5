@@ -40,7 +40,6 @@ void start() {
 				double x = 0;
 				std::cout << "¬ведите значение X: ";
 				std::cin >> x;
-				shape->SetX(x);
 				isInitialized = true;
 				shape->calculateY(x);
 				break;

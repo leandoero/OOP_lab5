@@ -2,12 +2,29 @@
 
 Ellipse::Ellipse(double a, double b) : Function(a, b) {};
 
-double Ellipse::calculateY(double X) {
-	resultForEllipse = sqrt(*b * *b * (1 - (X * X) / (*a * *a)));
-	return resultForEllipse;
+void Ellipse::calculateY(double X) {
+	ellipseX = X;
+	double y = *b * *b * (1 - (X * X) / (*a * *a));
+	if (y < 0) {
+		std::cout << "Значение X не подходит" << std::endl;
+		return;
+	}
+	else if (y == 0) {
+		index = 0;
+		ellipseY = sqrt(*b * *b * (1 - (X * X) / (*a * *a)));
+	}
+	else {
+		index = 1;
+		ellipseY = sqrt(*b * *b * (1 - (X * X) / (*a * *a)));
+	}
 }
 std::string Ellipse::toString() {
-	return "Ellipse : x = " + std::to_string(*x) + " y = " + std::to_string(resultForEllipse);
+	if (index == 0) {
+		return "Ellipse : x = " + std::to_string(ellipseX) + " y = " + std::to_string(ellipseY);
+	}
+	else if (index == 1) {
+		return "Ellipse : x = " + std::to_string(ellipseX) + " y = +-" + std::to_string(ellipseY);
+	}
 }
 double Ellipse::getEccentricity() {
 	double c = sqrt(*a * *a - *b * *b);

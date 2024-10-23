@@ -4,7 +4,8 @@
 #include <math.h>
 
 class Ellipse : public Function {
-	double resultForEllipse = 0;
+	double ellipseX, ellipseY;
+	int index;
 public:
 	double getEccentricity();					//Метод для вычисления эксцентриситета
 	double getParameter();						//Метод для вычисления параметра эллипсa
@@ -12,6 +13,6 @@ public:
 	double getArea();							//Метод для вычисления площади эллипса
 	double getPerimeter();						//Метод для вычисления длины периметра
 	Ellipse(double, double);
-	double calculateY(double);
+	void calculateY(double);
 	std::string toString();
 };

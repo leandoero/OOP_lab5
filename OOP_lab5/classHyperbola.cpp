@@ -1,16 +1,35 @@
 #include "classHyperbola.h"
 
 Hyperbola::Hyperbola(double a, double b) : Function(a, b) {};
-double Hyperbola::calculateY(double X) {
-	resultForHyperbola = sqrt(*b * *b * ((X * X) / (*a * *a) - 1));
-	return resultForHyperbola;
+void Hyperbola::calculateY(double X) {
+	hyperbolaX = X;
+	
+	double y = *b * *b * ((X * X) / (*a * *a) - 1);
+	if (-1 * *a > hyperbolaX && *a < hyperbolaX ) {
+		index = 0;
+		hyperbolaY = sqrt(y);
+	}
+	else if (abs(hyperbolaX) < *a) {
+		std::cout << "Для значения X значение Y - пустое множество" << std::endl;
+		//икс по модулю больше a то два y
+		//икс по модулю меньше а то пустое множество
+		//икс равен а либо -а то игрик равен 0
+	}
+	else {
+		hyperbolaY = sqrt(y);
+	}
 }
 std::string Hyperbola::toString() {
-	return "Hyperbola : x = " + std::to_string(*x) + " y = " + std::to_string(resultForHyperbola);
+	if (index == 0) {
+		return "Hyperbola : x = " + std::to_string(hyperbolaX) + " y = +-" + std::to_string(hyperbolaY);
+	}
+	else {
+		return "Hyperbola : x = " + std::to_string(hyperbolaX) + " y = " + std::to_string(hyperbolaY);
+	}
 }
 std::pair<double, double> Hyperbola::getAsymptotes() {
-	double y_First = (*b / *a) * *x;
-	double y_Second = -1 * (*b / *a) * *x;
+	double y_First = (*b / *a) * hyperbolaX;
+	double y_Second = -1 * (*b / *a) * hyperbolaX;
 	return {y_First, y_Second};
 }
 bool Hyperbola::isPointOnHyperbola(double x, double y) {
