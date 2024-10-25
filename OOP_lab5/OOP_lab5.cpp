@@ -2,7 +2,6 @@
 #include "otherFunc.h"
 
 //сделать более математически правильный вывод
-//убрать X из класса Function
 
 using namespace std;
 

@@ -6,24 +6,26 @@ void Ellipse::calculateY(double X) {
 	ellipseX = X;
 	double y = *b * *b * (1 - (X * X) / (*a * *a));
 	if (y < 0) {
-		std::cout << "Значение X не подходит" << std::endl;
-		return;
-	}
-	else if (y == 0) {
 		index = 0;
-		ellipseY = sqrt(*b * *b * (1 - (X * X) / (*a * *a)));
 	}
-	else {
+	else if (y > 0) {
 		index = 1;
-		ellipseY = sqrt(*b * *b * (1 - (X * X) / (*a * *a)));
+		ellipseY = sqrt(y);
+	}
+	else if(y == 0){
+		index = 2;
+		ellipseY = sqrt(y);
 	}
 }
 std::string Ellipse::toString() {
 	if (index == 0) {
-		return "Ellipse : x = " + std::to_string(ellipseX) + " y = " + std::to_string(ellipseY);
+		return "Точка находится вне эллипса";
 	}
 	else if (index == 1) {
 		return "Ellipse : x = " + std::to_string(ellipseX) + " y = +-" + std::to_string(ellipseY);
+	}
+	else if (index == 2) {
+		return "Ellipse : x = " + std::to_string(ellipseX) + " y = " + std::to_string(ellipseY);
 	}
 }
 double Ellipse::getEccentricity() {

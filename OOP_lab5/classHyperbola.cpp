@@ -1,36 +1,43 @@
 #include "classHyperbola.h"
 
 Hyperbola::Hyperbola(double a, double b) : Function(a, b) {};
+
 void Hyperbola::calculateY(double X) {
 	hyperbolaX = X;
-	
-	double y = *b * *b * ((X * X) / (*a * *a) - 1);
-	if (-1 * *a > hyperbolaX && *a < hyperbolaX ) {
-		index = 0;
-		hyperbolaY = sqrt(y);
+
+	// ¬ычисление y^2
+	double ySquare = (*b) * (*b) * ((X * X) / ((*a) * (*a)) - 1);
+
+	// ѕроверка условий дл€ X
+	if (std::abs(hyperbolaX) > *a) {
+		// ≈сли X больше a или меньше -a, значение Y существует
+		if (ySquare >= 0) {
+			index = 0;  // ¬ыбор индекса дл€ хранени€ значений
+			hyperbolaY = sqrt(ySquare);  // ѕоложительное значение Y
+		}
 	}
-	else if (abs(hyperbolaX) < *a) {
-		std::cout << "ƒл€ значени€ X значение Y - пустое множество" << std::endl;
-		//икс по модулю больше a то два y
-		//икс по модулю меньше а то пустое множество
-		//икс равен а либо -а то игрик равен 0
+	else if (std::abs(hyperbolaX) < *a) {
+		index = 1;
 	}
-	else {
-		hyperbolaY = sqrt(y);
+	else if (std::abs(hyperbolaX) == *a) {
+		index = 2;
 	}
 }
 std::string Hyperbola::toString() {
 	if (index == 0) {
 		return "Hyperbola : x = " + std::to_string(hyperbolaX) + " y = +-" + std::to_string(hyperbolaY);
 	}
-	else {
-		return "Hyperbola : x = " + std::to_string(hyperbolaX) + " y = " + std::to_string(hyperbolaY);
+	else if(index == 1){
+		return "ƒл€ значени€ X значение Y - пустое множество";
+	}
+	else if (index == 2) {
+		return "Hyperbola : x = " + std::to_string(hyperbolaX) + " y = 0";
 	}
 }
 std::pair<double, double> Hyperbola::getAsymptotes() {
 	double y_First = (*b / *a) * hyperbolaX;
 	double y_Second = -1 * (*b / *a) * hyperbolaX;
-	return {y_First, y_Second};
+	return { y_First, y_Second };
 }
 bool Hyperbola::isPointOnHyperbola(double x, double y) {
 	return (x * x) / (*a * *a) - (y * y) / (*b * *b) == 1;
